@@ -53,7 +53,7 @@ module cla64_flat(
       assign #(2) terms[k] = g[k-1];
 
       // OR reduction across all terms to form c[k]
-      assign #(2) c[k] = |terms;
+      assign #(2) c[k] = |terms; 
     end
   endgenerate
 
