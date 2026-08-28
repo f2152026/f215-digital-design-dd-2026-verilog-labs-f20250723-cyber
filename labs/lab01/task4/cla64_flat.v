@@ -57,7 +57,7 @@ module cla64_flat(
     end
   endgenerate
 
-  assign cout = c[64];
+  assign cout = c[64]; 
 
   // ---------------------------------------------------------------------
   // Step 3: sum bits
