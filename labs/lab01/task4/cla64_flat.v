@@ -20,7 +20,7 @@ module cla64_flat(
   // ---------------------------------------------------------------------
   genvar i;
   generate
-    for (i = 0; i < 64; i = i + 1) begin : gen_pg
+    for (i = 0; i < 64; i = i + 1) begin : gen_pg 
       xor #(2) (p[i], a[i], b[i]);
       and #(2) (g[i], a[i], b[i]);
     end
