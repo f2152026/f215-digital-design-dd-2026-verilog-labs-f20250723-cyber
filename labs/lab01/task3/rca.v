@@ -20,9 +20,29 @@ module rca(
 
   wire c1, c2, c3;
 
-  FA_Gate FA0(.a(a[0]), .b(b[0]), .cin(cin), .sum(sum[0]), .cout(c1));
-  FA_Gate FA1(.a(a[1]), .b(b[1]), .cin(c1), .sum(sum[1]), .cout(c2));
-  FA_Gate FA2(.a(a[2]), .b(b[2]), .cin(c2), .sum(sum[2]), .cout(c3));
-  FA_Gate FA3(.a(a[3]), .b(b[3]), .cin(c3), .sum(sum[3]), .cout(cout)); 
+  // Instantiate the 4 full adders using named port connections
+  FA_Gate FA0 (.a(a[0]), .b(b[0]), .cin(cin), .sum(sum[0]), .cout(c1));
+  FA_Gate FA1 (.a(a[1]), .b(b[1]), .cin(c1),  .sum(sum[1]), .cout(c2));
+  FA_Gate FA2 (.a(a[2]), .b(b[2]), .cin(c2),  .sum(sum[2]), .cout(c3));
+  FA_Gate FA3 (.a(a[3]), .b(b[3]), .cin(c3),  .sum(sum[3]), .cout(cout));
+
+endmodule
+
+
+module FA_Gate(
+  input  a,
+  input  b,
+  input  cin,
+  output sum,
+  output cout
+);
+
+  wire ps, pc1, pc2;
+
+  xor #(3,2) (ps,   a,   b);
+  and #(3,2) (pc1,  a,   b);
+  xor #(3,2) (sum,  cin, ps);
+  and #(3,2) (pc2,  cin, ps);
+  or  #(3,2) (cout, pc1, pc2);
 
 endmodule
