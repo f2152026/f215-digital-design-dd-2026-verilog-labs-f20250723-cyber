@@ -13,7 +13,7 @@ alu DUT (
 );// Waveform dump configuration
 string vcd_file;
 initial begin
-if ($value$plusargs("vcd=%s", vcd_file)) begin
+if ($value$plusargs("vcd=%s", vcd_file)) begin 
 $dumpfile(vcd_file);$dumpvars(0, DUT);
 end
 end// Test stimulus and self-checking
